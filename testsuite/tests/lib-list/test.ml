@@ -92,6 +92,17 @@ let () =
   assert (
     let f a b = a + b, string_of_int b in
     List.fold_left_map f 0 l = (45, sl));
+
+  assert (List.split_with Fun.id [(1, -1); (2, -2); (3, -3)]
+          = ([1; 2; 3],[-1; -2; -3]));
+
+  assert (List.combine_with (fun _ -> assert false) [] [] = []);
+  assert (List.combine_with (+) [1; 2; 3] [10; 20; 30] = [11; 22; 33]);
+  assert (
+    match List.combine_with (+) [1] [] with
+    | exception Invalid_argument _ -> true
+    | _ -> false);
+
   ()
 ;;
 

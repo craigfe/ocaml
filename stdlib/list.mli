@@ -429,6 +429,18 @@ val split : ('a * 'b) list -> 'a list * 'b list
    Not tail-recursive.
  *)
 
+val split_with : ('a -> 'b * 'c) -> 'a list -> 'b list * 'c list
+(** Split a list into a pair of lists by applying a given splitting function
+    to each element.
+
+    [split_with f \[a1; ...; an\]] is [(\[b1; ...; bn\], \[c1; ...; cn\])],
+    where [f ai = (bi, ci)].
+
+    Not tail-recursive.
+
+    @since 4.13.0
+ *)
+
 val combine : 'a list -> 'b list -> ('a * 'b) list
 (** Transform a pair of lists into a list of pairs:
    [combine [a1; ...; an] [b1; ...; bn]] is
@@ -437,6 +449,18 @@ val combine : 'a list -> 'b list -> ('a * 'b) list
    have different lengths. Not tail-recursive.
  *)
 
+val combine_with : ('a -> 'b -> 'c) -> 'a list -> 'b list -> 'c list
+(** Combine a pair of equally-sized lists into a single list by applying a
+    given binary operation to the elements at each index.
+
+    [combine_with f [a1; ...; an] [b1; ...; bn]] is
+    [\[f a1 b1; ...; f an bn\]]
+
+    Not tail-recursive.
+
+    @raise Invalid_argument if the two lists have different lengths.
+    @since 4.13.0
+ *)
 
 (** {1 Sorting} *)
 

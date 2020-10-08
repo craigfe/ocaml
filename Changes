@@ -33,6 +33,9 @@ Working version
 - #9582: Add Array.{find_opt,find_map,split,combine}.
   (Nicolás Ojeda Bär, review by Daniel Bünzli and Gabriel Scherer)
 
+- #TODO: Add List.{split_with,combine_with}.
+  (Craig Ferguson, review by TODO)
+
 ### Other libraries:
 
 * #10084: Unix.open_process_args* functions now look up the program in the PATH.

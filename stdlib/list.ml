@@ -299,11 +299,24 @@ let rec split = function
   | (x,y)::l ->
       let (rx, ry) = split l in (x::rx, y::ry)
 
+let rec split_with f = function
+    [] -> ([], [])
+  | hd::tl ->
+      let x, y = f hd in
+      let (rx, ry) = split_with f tl in
+      (x::rx, y::ry)
+
 let rec combine l1 l2 =
   match (l1, l2) with
     ([], []) -> []
   | (a1::l1, a2::l2) -> (a1, a2) :: combine l1 l2
   | (_, _) -> invalid_arg "List.combine"
+
+let rec combine_with f l1 l2 =
+  match (l1, l2) with
+    ([], []) -> []
+  | (a1::l1, a2::l2) -> let r = f a1 a2 in r :: combine_with f l1 l2
+  | (_, _) -> invalid_arg "List.combine_with"
 
 (** sorting *)
 
