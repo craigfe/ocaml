@@ -89,6 +89,9 @@ Working version
   (Sébastien Hinderer, review by Damien Doligez, Gabriel Scherer, David
   Allsopp, Nicolás Ojeda Bär, Vincent Laviron)
 
+- #TODO: Add List.{zip,unzip}
+  (Craig Ferguson, review by TODO)
+
 ### Other libraries:
 
 - #10192: Add support for Unix domain sockets on Windows and use them

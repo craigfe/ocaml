@@ -92,6 +92,17 @@ let () =
   assert (
     let f a b = a + b, string_of_int b in
     List.fold_left_map f 0 l = (45, sl));
+
+  assert (List.combine [1;2;3] ['a';'b';'c'] = [(1,'a');(2,'b');(3,'c')]);
+  let () =
+    match List.combine [1;2;3] ['a';'b'] with
+    | exception Invalid_argument _ -> ()
+    | _ -> failwith "List.combine should raise on lists of non-equal size"
+  in
+
+  assert (List.zip [1;2;3] ['a';'b';'c'] = [(1,'a');(2,'b');(3,'c')]);
+  assert (List.zip [1;2;3] ['a';'b'] = [(1,'a');(2,'b')]);
+
   ()
 ;;
 

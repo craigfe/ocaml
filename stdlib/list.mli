@@ -429,6 +429,11 @@ val split : ('a * 'b) list -> 'a list * 'b list
    Not tail-recursive.
  *)
 
+val unzip : ('a * 'b) list -> 'a list * 'b list
+(** Alias of {!split}. Not tail-recursive.
+
+    @since 4.14 *)
+
 val combine : 'a list -> 'b list -> ('a * 'b) list
 (** Transform a pair of lists into a list of pairs:
    [combine [a1; ...; an] [b1; ...; bn]] is
@@ -437,6 +442,16 @@ val combine : 'a list -> 'b list -> ('a * 'b) list
    have different lengths. Not tail-recursive.
  *)
 
+val zip : 'a list -> 'b list -> ('a * 'b) list
+(** Same as {!combine}, but if one of the input lists is longer
+    than the other then its remaining elements are discarded:
+
+    [zip [a1; ...; an] [b1; ...; bm]] is
+    [[(a1,b1); ...; (al,bl)]], where [l = min n m].
+
+    Not tail-recursive.
+
+    @since 4.14 *)
 
 (** {1 Sorting} *)
 
